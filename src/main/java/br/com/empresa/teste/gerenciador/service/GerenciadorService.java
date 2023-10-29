@@ -1,8 +1,11 @@
 package br.com.empresa.teste.gerenciador.service;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.empresa.teste.gerenciador.model.Pessoa;
@@ -21,9 +24,16 @@ public class GerenciadorService {
 			return pessoaRepository.save(Utils.trataDados(nome, identificador));
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
-		return null;		
+		}
+		return new Pessoa();
 	}
 
+	public List<Pessoa> buscarPessoas() {
+		try {
+			return pessoaRepository.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Collections.emptyList();
+	}
 }
