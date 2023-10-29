@@ -10,6 +10,8 @@ URL: http://localhost:8081/h2-console/ <br /><br />
 <br />password: 123<br />
 JDBC: jdbc:h2:mem:gerenciadorbd<br />
 
+# Acessando o Keycloak
+http://localhost:8080/
 
 # Projeto teste
 
