@@ -1,6 +1,8 @@
 package br.com.empresa.teste.gerenciador.config;
 
+import java.util.Arrays;
 import java.util.Collections;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
@@ -36,16 +40,22 @@ public class AppConfiguration {
 				.apis(RequestHandlerSelectors.basePackage("br.com.empresa.teste.gerenciador.controller"))
 				.paths(PathSelectors.ant("/**"))
 				.build()
-				.apiInfo(apiInfo());		
+				.apiInfo(apiInfo())
+				.securitySchemes(Arrays.asList(apiKey()));
 	}
-	
+
+	private ApiKey apiKey() {
+		return new ApiKey("JWT", "Authorization", "header");
+	}
+
 	private ApiInfo apiInfo() {
 	    return new ApiInfo(
 	      "Gerenciadro de Pessoas REST API", 
 	      "API responsável pelo cadastro de pessoas", 
-	      "Teste empresa", 
+	      "1.0",
 	      "Teste Empresa", 
 	      new Contact("Richard Souza", "www.example.com", "myeaddress@company.com"), 
 	      "License of API", "API license URL", Collections.emptyList());
 	}
+
 }
