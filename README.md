@@ -1,4 +1,4 @@
-# spring-oauth-keycloak
+# spring-oauth2-keycloak
 
 # Acessando o swagger
 http://localhost:8080/swagger-ui/
